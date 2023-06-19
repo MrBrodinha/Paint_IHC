@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.Double?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
+
+<BorderPane fx:id="border" minHeight="650.0" minWidth="1200.0" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trabalho.desenho.DesenhoController">
+   <center>
+      <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-background: #5A5A5A;" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <content>
+            <Canvas fx:id="canvas" height="540.0" onMouseDragged="#handleMouseEvent2" onMousePressed="#handleMouseEvent" onScroll="#zoom" width="960.0" />
+         </content></ScrollPane>
+   </center>
+   <bottom>
+      <FlowPane alignment="CENTER_LEFT" style="-fx-background-color: #012030;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="botao" mnemonicParsing="false" onAction="#mudarTamanho" prefHeight="20.0" prefWidth="60.0" style="-fx-border-style: none;" text="Alterar" />
+            <TextField alignment="CENTER" prefHeight="20.0" prefWidth="50.0" text="960" fx:id="x" />
+            <TextField fx:id="y" alignment="CENTER" prefHeight="20.0" prefWidth="50.0" text="540" />
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="5.0" left="5.0" top="5.0" />
+         </padding>
+      </FlowPane>
+   </bottom>
+   <top>
+      <GridPane prefHeight="50.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.0" minWidth="10.0" prefWidth="182.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="10.0" prefWidth="226.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="313.0" minWidth="10.0" prefWidth="270.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="332.0" minWidth="10.0" prefWidth="245.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="280.0" minWidth="10.0" prefWidth="276.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" maxHeight="50.0" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="300.0" GridPane.columnIndex="4">
+               <children>
+                  <Label fx:id="espessura" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="50.0">
+                     <FlowPane.margin>
+                        <Insets />
+                     </FlowPane.margin>
+                  </Label>
+                  <Slider fx:id="slide" max="200.0" maxHeight="-Infinity" maxWidth="-Infinity" min="1.0" prefHeight="30.0" prefWidth="120.0" value="20.0" />
+                  <TextField fx:id="slide_text" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="40.0" text="20">
+                     <FlowPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </FlowPane.margin>
+                  </TextField>
+                  <ColorPicker fx:id="color" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="40.0" style="-fx-color-label-visible: false;">
+                     <FlowPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </FlowPane.margin>
+                  </ColorPicker>
+               </children>
+            </FlowPane>
+            <FlowPane alignment="CENTER" prefHeight="50.0" prefWidth="295.0" GridPane.columnIndex="3">
+               <children>
+                  <ToggleButton fx:id="pincel" mnemonicParsing="false" onAction="#pincelSelected" prefHeight="40.0" prefWidth="40.0">
+                     <FlowPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </FlowPane.margin>
+                  </ToggleButton>
+                  <ToggleButton fx:id="borracha" mnemonicParsing="false" onAction="#borrachaSelected" prefHeight="40.0" prefWidth="40.0">
+                     <FlowPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </FlowPane.margin>
+                  </ToggleButton>
+                  <ToggleButton fx:id="pick" mnemonicParsing="false" onAction="#pickSelected" prefHeight="40.0" prefWidth="40.0">
+                     <FlowPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </FlowPane.margin>
+                  </ToggleButton>
+                  <ToggleButton fx:id="lupa" mnemonicParsing="false" onAction="#lupaSelected" prefHeight="40.0" prefWidth="40.0">
+                     <FlowPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </FlowPane.margin>
+                  </ToggleButton>
+               </children>
+            </FlowPane>
+            <FlowPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="criar" mnemonicParsing="false" onAction="#reset_canvas" prefHeight="40.0" prefWidth="40.0">
+                     <FlowPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </FlowPane.margin></Button>
+                  <Button fx:id="edit" mnemonicParsing="false" onAction="#abrirFile" prefHeight="40.0" prefWidth="40.0">
+                     <FlowPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </FlowPane.margin></Button>
+                  <Button fx:id="save" mnemonicParsing="false" onAction="#saveFile" prefHeight="40.0" prefWidth="40.0">
+                     <FlowPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </FlowPane.margin>
+                  </Button>
+               </children>
+            </FlowPane>
+            <FlowPane alignment="CENTER" prefHeight="50.0" prefWidth="260.0" GridPane.columnIndex="2">
+               <children>
+                  <ToggleButton fx:id="circ" mnemonicParsing="false" onAction="#circSelected" prefHeight="40.0" prefWidth="40.0">
+                     <FlowPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </FlowPane.margin>
+                     <graphic>
+                        <Circle fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                     </graphic>
+                  </ToggleButton>
+                  <ToggleButton fx:id="quad" mnemonicParsing="false" onAction="#quadSelected" prefHeight="40.0" prefWidth="40.0">
+                     <FlowPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </FlowPane.margin>
+                     <graphic>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+                     </graphic>
+                  </ToggleButton>
+                  <ToggleButton fx:id="triang" mnemonicParsing="false" onAction="#triangSelected" prefHeight="40.0" prefWidth="40.0">
+                     <FlowPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </FlowPane.margin>
+                     <graphic>
+                        <Polygon fill="DODGERBLUE" stroke="BLACK" strokeType="INSIDE">
+                           <points>
+                              <Double fx:value="-10.0" />
+                              <Double fx:value="8.0" />
+                              <Double fx:value="10.0" />
+                              <Double fx:value="8.0" />
+                              <Double fx:value="0.0" />
+                              <Double fx:value="-12.0" />
+                           </points>
+                        </Polygon>
+                     </graphic>
+                  </ToggleButton>
+               </children>
+            </FlowPane>
+            <FlowPane alignment="CENTER" prefHeight="50.0" prefWidth="145.0" GridPane.columnIndex="1">
+               <children>
+                  <Button fx:id="back" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
+                     <FlowPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </FlowPane.margin>
+                  </Button>
+                  <Button fx:id="front" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
+                     <FlowPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </FlowPane.margin>
+                  </Button>
+                  <Button fx:id="imagem" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
+                     <FlowPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </FlowPane.margin></Button>
+               </children>
+            </FlowPane>
+         </children>
+      </GridPane>
+   </top>
+</BorderPane>
